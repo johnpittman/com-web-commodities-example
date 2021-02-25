@@ -1,9 +1,11 @@
 import React from 'react';
+import LoadingZone from '@client/components/shared/LoadingZone';
 import PricingSidebarRow from './features/PricingSidebarRow';
 
 import './style.css';
 
 export interface PricingSidebarProps {
+  loading: boolean;
   favoriteCommodityPrices: any;
   miscCommodityPrices: any;
   onAddFavorite: (id: number | string) => void;
@@ -23,39 +25,45 @@ function PricingSidebar(props: PricingSidebarProps) {
     <aside className={classNames.root}>
       <span className={classNames.header}>Commodity Prices</span>
       <div className={classNames.content}>
-        {!!props.favoriteCommodityPrices.length && (
-          <section className={classNames.section}>
-            {props.favoriteCommodityPrices.map((priceInfo: any) => {
-              return (
-                <PricingSidebarRow
-                  key={priceInfo.id}
-                  id={priceInfo.id}
-                  name={priceInfo.name}
-                  price={priceInfo.price}
-                  updatedAt={priceInfo.updatedAt}
-                  favorite
-                  onAddFavorite={props.onAddFavorite}
-                  onRemoveFavorite={props.onRemoveFavorite}
-                />
-              );
-            })}
-          </section>
+        {props.loading ? (
+          <LoadingZone />
+        ) : (
+          <>
+            {!!props.favoriteCommodityPrices.length && (
+              <section className={classNames.section}>
+                {props.favoriteCommodityPrices.map((priceInfo: any) => {
+                  return (
+                    <PricingSidebarRow
+                      key={priceInfo.id}
+                      id={priceInfo.id}
+                      name={priceInfo.name}
+                      price={priceInfo.price}
+                      updatedAt={priceInfo.updatedAt}
+                      favorite
+                      onAddFavorite={props.onAddFavorite}
+                      onRemoveFavorite={props.onRemoveFavorite}
+                    />
+                  );
+                })}
+              </section>
+            )}
+            <section className={classNames.section}>
+              {props.miscCommodityPrices.map((priceInfo: any) => {
+                return (
+                  <PricingSidebarRow
+                    key={priceInfo.id}
+                    id={priceInfo.id}
+                    name={priceInfo.name}
+                    price={priceInfo.price}
+                    updatedAt={priceInfo.updatedAt}
+                    onAddFavorite={props.onAddFavorite}
+                    onRemoveFavorite={props.onRemoveFavorite}
+                  />
+                );
+              })}
+            </section>
+          </>
         )}
-        <section className={classNames.section}>
-          {props.miscCommodityPrices.map((priceInfo: any) => {
-            return (
-              <PricingSidebarRow
-                key={priceInfo.id}
-                id={priceInfo.id}
-                name={priceInfo.name}
-                price={priceInfo.price}
-                updatedAt={priceInfo.updatedAt}
-                onAddFavorite={props.onAddFavorite}
-                onRemoveFavorite={props.onRemoveFavorite}
-              />
-            );
-          })}
-        </section>
       </div>
     </aside>
   );

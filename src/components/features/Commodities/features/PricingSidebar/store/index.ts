@@ -22,21 +22,32 @@ export const store = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(asyncActions.retrieveCommodityPrices.pending, (state) => {
+      if (state.commodityPrices.dirty) {
+        state.commodityPrices.loading++;
+      }
+
       state.commodityPrices.error = null;
-      state.commodityPrices.loading++;
     });
     builder.addCase(
       asyncActions.retrieveCommodityPrices.fulfilled,
       (state, action) => {
+        if (state.commodityPrices.dirty) {
+          state.commodityPrices.loading--;
+        }
+
         state.commodityPrices.data = action.payload;
-        state.commodityPrices.loading--;
+        state.commodityPrices.dirty = false;
       }
     );
     builder.addCase(
       asyncActions.retrieveCommodityPrices.rejected,
       (state, action) => {
+        state.commodityPrices.dirty = true;
         state.commodityPrices.error = action.payload;
-        state.commodityPrices.loading--;
+
+        if (state.commodityPrices.dirty) {
+          state.commodityPrices.loading--;
+        }
       }
     );
   }

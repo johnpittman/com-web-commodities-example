@@ -1,0 +1,44 @@
+.LoadingSpinner {
+  transform-origin: center center;
+
+  animation: r-loading-spinner-rotate 2s linear infinite;
+
+  & > circle {
+    animation:
+      r-loading-spinner-dash 1.5s ease-in-out infinite,
+      r-loading-spinner-color 6s ease-in-out infinite;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes r-loading-spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes r-loading-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes r-loading-spinner-color {
+  100%,
+  0% {
+    stroke: #33ce9b;
+  }
+}
