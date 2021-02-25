@@ -1,0 +1,39 @@
+.PricingSidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  background: #f1f5f8;
+  border-right: solid 1px #d1d9e3;
+
+  @media only screen and (min-width: 1024px) {
+    width: 240px;
+  }
+
+  &__header {
+    display: flex;
+
+    align-items: center;
+    padding: 20px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__section {
+    padding: 20px;
+
+    border-bottom: solid 1px #d1d9e3;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border: 0;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.PricingSidebarRow {
+  display: flex;
+  align-items: center;
+
+  &__fav-icon {
+    width: 18px;
+  }
+
+  &__name {
+    flex-grow: 1;
+    margin-left: 8px;
+
+    font-weight: 800;
+    font-size: 12px;
+  }
+
+  &__price {
+    min-width: 10px;
+
+    font-size: 12px;
+  }
+
+  &__direction-icon {
+    width: 16px;
+    margin-left: 6px;
+
+    &--idle {
+      color: #4f4f4f;
+    }
+
+    &--up {
+      color: #33ce9b;
+    }
+
+    &--down {
+      color: #eb5757;
+    }
+  }
+}

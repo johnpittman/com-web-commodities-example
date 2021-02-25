@@ -1,0 +1,10 @@
+# Folders
+.idea
+.snowpack
+node_modules
+build
+
+# Files
+.*cache
+*.log
+*.DS_Store

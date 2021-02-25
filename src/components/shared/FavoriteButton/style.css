@@ -1,0 +1,9 @@
+.FavoriteButton {
+  fill: none;
+
+  &--selected {
+    color: #33ce9b;
+
+    fill: #33ce9b;
+  }
+}
