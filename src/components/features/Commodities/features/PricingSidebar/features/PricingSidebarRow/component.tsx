@@ -34,8 +34,8 @@ function PricingSidebarRow(props: PricingSidebarRowProps) {
   let priceDirectionComponent = null;
 
   let withinTimeRange = useMemo(() => {
-    let now = moment();
-    let updatedTime = moment(props.updatedAt);
+    let now = moment().utc();
+    let updatedTime = moment(props.updatedAt).utc();
     let inRange = now.diff(updatedTime, 'h');
 
     return inRange < 24;
